@@ -1,0 +1,58 @@
+server:
+  port: 8090
+
+spring:
+  freemarker:
+    check-template-location: false
+  profiles:
+    active: dev
+  jackson:
+    time-zone: GMT+8
+  data:
+    redis:
+      repositories:
+        enabled: false
+#  pid:
+#    file: /自行指定位置/eladmin.pid
+
+  #配置 Jpa
+  jpa:
+    hibernate:
+      ddl-auto: none
+    open-in-view: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+
+  redis:
+    #数据库索引
+    database: ${REDIS_DB:0}
+    host: ${REDIS_HOST:127.0.0.1}
+    port: ${REDIS_PORT:6379}
+    password: ${REDIS_PWD:root}
+    #连接超时时间
+    timeout: 5000
+
+task:
+  pool:
+    # 核心线程池大小
+    core-pool-size: 10
+    # 最大线程数
+    max-pool-size: 30
+    # 活跃时间
+    keep-alive-seconds: 60
+    # 队列容量
+    queue-capacity: 50
+
+#七牛云
+qiniu:
+  # 文件大小 /M
+  max-size: 15
+
+#邮箱验证码有效时间/秒
+code:
+  expiration: 300
+
+#密码加密传输，前端公钥加密，后端私钥解密
+rsa:
+  private_key: MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBAJF/fCoMm5d18serejUMJHkj1k6Q/yHBEO58qRhptwq3KkaANG1IswfmjufiJb/eQ3lvYAA2F33eFov5IXCtnhd1ozQ+EX87uBBR2TIx29lOmwGL65tCtX1GVU6q95STrMRlNBmAsg8raPiTvWa4hYq0qqT+89BBktLOzzw4DhtFAgMBAAECgYBwtQ+qxw90GYMS1yuYkipiyLcHL1zjedoy09BtP97x5wdRi5iRG2LL+Pa0e8OASJ1+IR99qmkyMGrIzRjxXxx5pmPnO+Qezl5uIhs516Va8m5YgC47btczNzN2c/an7NjfXy+RtQAHvOuCTYEL7lVwM9jZ5V/T0Tj7LggPeGMVwQJBAMqbezian/ZwAaGdVKTSh0LpVGBsTAoz/ky1+JS8poR9gYDmi7+FaDyWLqzePRZarjancPz9piC2dI6ev+u5hdECQQC31zrBKPCIwDnkHvDqUwkzYNFmDxPFyZm6tkRVpqgR5L65SNBuPUYicEy1QBXLNSkk4OEQqYuu4gYj+X4ybbc1AkEAlMTaE9QmBRR1fjBCSMx1mYIu/KZIp21KGxW7M6vaMYrensGqd7UDtwknuLNu840eQu9sHbg6Vebjax3SGsqdIQJAWxmQx/9dkqaPCXg7siKLwKYNniGCjtSkFV4U5sy7JILR8Ecg4kAC7TXxDTBAnH4vcVLutK8PxQ3ENTeBTcQIsQJAcbnf618BoiSkB7R4KEaNpwUFImCmGLYAj1w27b1dwXKNCEP5/f8VPSc97x3GaWOTAoo4Q54CEBwi9VnZ3gs18g==
